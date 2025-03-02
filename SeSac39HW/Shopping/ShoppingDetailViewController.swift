@@ -47,7 +47,17 @@ class ShoppingDetailViewController: UIViewController {
         output.shoppingData
             .map {$0.items}
             .bind(to: shoppingDetailView.collectionView.rx.items(cellIdentifier: ShoppingDetailCollectionViewCell.id, cellType: ShoppingDetailCollectionViewCell.self)) { (row, element, cell) in
+                
                 cell.configureData(element)
+                cell.likeButton.tag = row
+                
+//                print(cell.likeButton.tag)
+                cell.likeButton.rx.tap
+                    .bind(with: self) { owner, _ in
+//                        print(cell.likeButton.tag)
+                        print("1")
+                    }
+                    .disposed(by: cell.disposeBag)
                 
                 DispatchQueue.main.async {
                     cell.itemImageView.layer.cornerRadius = 10
@@ -55,6 +65,12 @@ class ShoppingDetailViewController: UIViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+//        shoppingDetailView.collectionView.rx.itemSelected
+//            .bind(with: self) { owenr, value in
+//                print(value)
+//            }
+//            .disposed(by: disposeBag)
         
         output.shoppingData
             .map { "\($0.total ?? 0) 개의 검색 결과" }

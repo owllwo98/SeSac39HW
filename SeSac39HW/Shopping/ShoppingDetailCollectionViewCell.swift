@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import Alamofire
 import SnapKit
 import Kingfisher
@@ -18,6 +20,9 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     let mallName: UILabel = UILabel()
     let title: UILabel = UILabel()
     let lprice: UILabel = UILabel()
+    let likeButton: UIButton = UIButton()
+    
+    var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,14 +33,22 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
         
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+        
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func configureHierarchy() {
-        [itemImageView, mallName, title, lprice].forEach {
+        [itemImageView, mallName, title, lprice,likeButton].forEach {
             contentView.addSubview($0)
         }
+        
+//        itemImageView.addSubview(likeButton)
     }
     
     func configureUI() {
@@ -50,23 +63,36 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
         lprice.textColor = .white
         lprice.font = .systemFont(ofSize: 12, weight: .regular)
         
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        
     }
     
     func configureLayout() {
         itemImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            
         }
+        
+//        likeButton.snp.makeConstraints { make in
+//            make.bottom.equalToSuperview().inset(4)
+//            make.trailing.equalToSuperview().inset(4)
+//            make.size.equalTo(25)
+//        }
         
         mallName.snp.makeConstraints { make in
             make.top.equalTo(itemImageView.snp.bottom).inset(-4)
             make.leading.equalToSuperview().inset(4)
         }
         
+        likeButton.snp.makeConstraints { make in
+            make.top.equalTo(itemImageView.snp.bottom).inset(-4)
+            make.trailing.equalToSuperview().inset(4)
+            make.size.equalTo(20)
+        }
+        
         title.snp.makeConstraints { make in
             make.top.equalTo(mallName.snp.bottom).inset(-4)
             make.leading.equalToSuperview().inset(4)
-            make.trailing.equalToSuperview().inset(4)
+            make.trailing.equalTo(likeButton.snp.leading).inset(-2)
         }
         
         lprice.snp.makeConstraints { make in

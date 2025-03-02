@@ -60,7 +60,7 @@ class ShoppingDetailView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(highPriceSortButton.snp.bottom).inset(-8)
-            make.horizontalEdges.equalToSuperview()
+            make.width.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }

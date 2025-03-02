@@ -74,6 +74,7 @@ class ShoppingDetailViewModel {
             }
             .disposed(by: disposeBag)
         
+        
         input.dateButtonTapped
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .withLatestFrom(input.query)
