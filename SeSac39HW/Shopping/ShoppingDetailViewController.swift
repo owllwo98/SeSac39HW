@@ -11,6 +11,7 @@ import RxCocoa
 import Alamofire
 import SnapKit
 import Kingfisher
+import RealmSwift
 
 class ShoppingDetailViewController: UIViewController {
     
@@ -22,17 +23,30 @@ class ShoppingDetailViewController: UIViewController {
     
     let query = BehaviorRelay<String>(value: "")
     
+    var productList: Results<ProductTable>!
+    
+    let realm = try! Realm()
+    
+    
+    
     override func loadView() {
         self.view = shoppingDetailView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        productList = realm.objects(ProductTable.self)
         
         configureView()
-        
+    
         bindData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        dump(productList)
     }
     
     deinit {
@@ -46,16 +60,51 @@ class ShoppingDetailViewController: UIViewController {
         
         output.shoppingData
             .map {$0.items}
-            .bind(to: shoppingDetailView.collectionView.rx.items(cellIdentifier: ShoppingDetailCollectionViewCell.id, cellType: ShoppingDetailCollectionViewCell.self)) { (row, element, cell) in
+            .bind(to: shoppingDetailView.collectionView.rx.items(cellIdentifier: ShoppingDetailCollectionViewCell.id, cellType: ShoppingDetailCollectionViewCell.self)) {  (row, element, cell) in
                 
                 cell.configureData(element)
                 cell.likeButton.tag = row
                 
 //                print(cell.likeButton.tag)
+                
+                
+
+                
                 cell.likeButton.rx.tap
+                    .do(onDispose: { print("cell dispose!") })
                     .bind(with: self) { owner, _ in
-//                        print(cell.likeButton.tag)
-                        print("1")
+                        
+                        if self.productList.contains(where: {
+                            $0.id == cell.cellID
+                        }) {
+                            do {
+                                try owner.realm.write {
+                                    let data = owner.productList.filter {
+                                        $0.id == cell.cellID
+                                    }
+                                    owner.realm.delete(data)
+                                    
+                                    print("realm 에 삭제 성공!")
+                                }
+                            } catch {
+                                print("realm 에 삭제 실패!")
+                            }
+                        } else {
+                            do {
+                                try owner.realm.write {
+              
+                                    let data = ProductTable(itemImage: element.image, mallName: element.mallName, title: element.title, lprice: element.lprice, productlike: true)
+                                    
+                                    owner.realm.add(data)
+                                    cell.id(id: data.id)
+                                    print("realm 저장완료")
+                                }
+                                
+                                owner.productList = owner.realm.objects(ProductTable.self)
+                            } catch {
+                                print("realm 에 저장 실패!")
+                            }
+                        }
                     }
                     .disposed(by: cell.disposeBag)
                 

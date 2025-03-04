@@ -11,6 +11,7 @@ import RxCocoa
 import Alamofire
 import SnapKit
 import Kingfisher
+import RealmSwift
 
 class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     
@@ -22,6 +23,12 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     let lprice: UILabel = UILabel()
     let likeButton: UIButton = UIButton()
     
+    var cellID: ObjectId? = nil
+    
+//    let realm = try! Realm()
+    
+//    var list: Results<JackTable>!
+    
     var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -30,6 +37,8 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
         configureHierarchy()
         configureUI()
         configureLayout()
+        
+//        list = realm.objects(ProductTable.self)
         
     }
     
@@ -44,7 +53,7 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     }
     
     func configureHierarchy() {
-        [itemImageView, mallName, title, lprice,likeButton].forEach {
+        [itemImageView, mallName, title, lprice, likeButton].forEach {
             contentView.addSubview($0)
         }
         
@@ -69,13 +78,14 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     
     func configureLayout() {
         itemImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(contentView.snp.width)
         }
         
 //        likeButton.snp.makeConstraints { make in
 //            make.bottom.equalToSuperview().inset(4)
 //            make.trailing.equalToSuperview().inset(4)
-//            make.size.equalTo(25)
+//            make.size.equalTo(20)
 //        }
         
         mallName.snp.makeConstraints { make in
@@ -115,8 +125,11 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
                                                      options: .regularExpression,
                                                      range: nil)
         lprice.text = numberFormatter.string(for: Int(list.lprice ?? "0"))
+        
     }
     
-    
+    func id(id: ObjectId) {
+        cellID = id
+    }
    
 }

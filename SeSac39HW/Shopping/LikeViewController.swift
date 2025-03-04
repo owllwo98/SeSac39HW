@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
 
 class LikeViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

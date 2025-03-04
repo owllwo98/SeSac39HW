@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+class LikeViewModel {
+    
+    struct Input {
+        
+    }
+    
+    struct Output {
+        
+    }
+    
+    func transform(input: Input) -> Output {
+        
+        
+        return Output()
+    }
+}

@@ -17,9 +17,9 @@ class ShoppingDetailView: BaseView {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 16, height: UIScreen.main.bounds.width / 2 - 16)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 16, height: UIScreen.main.bounds.width / 2 + 30)
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        layout.minimumLineSpacing = 60
+        layout.minimumLineSpacing = 35
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black

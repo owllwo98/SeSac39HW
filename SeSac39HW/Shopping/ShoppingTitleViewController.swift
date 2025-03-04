@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
+import RealmSwift
 
 class ShoppingTitleViewController: UIViewController {
     lazy var shoppingSearchBar: UISearchBar = {
@@ -23,6 +24,10 @@ class ShoppingTitleViewController: UIViewController {
     
     let viewModel = ShoppingTitleViewModel()
     
+    var productList: Results<ProductTable>!
+    
+    let realm = try! Realm()
+    
     let disposebag = DisposeBag()
     
     override func viewDidLoad() {
@@ -34,6 +39,12 @@ class ShoppingTitleViewController: UIViewController {
         
         bindData()
         
+        productList = realm.objects(ProductTable.self)
+        
+        print(realm.configuration.fileURL)
+//        print(productList.count)
+//        print(productList[0].productlike)
+//        dump(productList)
     }
     
     
