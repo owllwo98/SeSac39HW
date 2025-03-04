@@ -14,6 +14,8 @@ class ShoppingDetailViewModel {
     struct Input {
         let query: BehaviorRelay<String>
         
+        let likeChaged: BehaviorRelay<Void>
+        
         let similarButtonTapped: ControlEvent<Void>
         let dateButtonTapped: ControlEvent<Void>
         let dscButtonTapped: ControlEvent<Void>
@@ -200,6 +202,12 @@ class ShoppingDetailViewModel {
         start
             .map { $0 == 1 }
             .bind(to: scrollTop)
+            .disposed(by: disposeBag)
+        
+        input.likeChaged
+            .bind(with: self) { owner, _ in
+                shoppingData.accept(shoppingData.value)
+            }
             .disposed(by: disposeBag)
         
         return Output(shoppingData: shoppingData, selectButton: selectButton, responseError: responseError, scrollTop: scrollTop)

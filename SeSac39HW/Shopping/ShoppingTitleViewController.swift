@@ -79,6 +79,14 @@ class ShoppingTitleViewController: UIViewController {
             })
             .disposed(by: disposebag)
         
+        navigationItem.leftBarButtonItem?.rx.tap
+            .bind(with: self, onNext: { owner, _ in
+                let vc = LikeViewController()
+                
+                owner.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: disposebag)
+        
     }
     
     func configureHierarchy() {
@@ -106,6 +114,8 @@ class ShoppingTitleViewController: UIViewController {
         self.navigationItem.title = "도봉러의 쇼핑쇼핑"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: nil, action: nil)
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "back"), style: .plain, target: self, action: nil)
         navigationController?.navigationBar.tintColor = .lightGray
         

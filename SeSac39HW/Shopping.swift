@@ -21,7 +21,8 @@ struct ShoppingDetail: Decodable {
     let title: String?
     let link: String?
     let image: String?
-    let lprice, hprice, mallName, productID: String?
+    let lprice, hprice, mallName: String?
+    let productId: String
     let productType: String?
     let brand, maker: String?
     let category1: String?

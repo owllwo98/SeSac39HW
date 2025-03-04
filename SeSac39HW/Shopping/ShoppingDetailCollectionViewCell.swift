@@ -23,7 +23,7 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     let lprice: UILabel = UILabel()
     let likeButton: UIButton = UIButton()
     
-    var cellID: ObjectId? = nil
+    var cellID: String? = nil
     
 //    let realm = try! Realm()
     
@@ -126,10 +126,31 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
                                                      range: nil)
         lprice.text = numberFormatter.string(for: Int(list.lprice ?? "0"))
         
+        cellID = list.productId
     }
     
-    func id(id: ObjectId) {
-        cellID = id
+    func configureHeart(_ like: Bool) {
+        likeButton.setImage(UIImage(systemName: like ? "heart.fill" : "heart"), for: .normal)
     }
-   
+    
+    func configureData2(_ list: ProductTable?) {
+        guard let list else {
+            return
+        }
+        
+        let url = URL(string: list.itemImage ?? "star" + "?type=f50")
+        itemImageView.kf.setImage(with: url)
+        
+        let numberFormatter: NumberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let patten = "<[^>]+>|&quot;|<b>|</b>"
+        
+        mallName.text = list.mallName
+        title.text = list.title?.replacingOccurrences(of: patten,
+                                                     with: "",
+                                                     options: .regularExpression,
+                                                     range: nil)
+        lprice.text = numberFormatter.string(for: Int(list.lprice ?? "0"))
+    }
+ 
 }

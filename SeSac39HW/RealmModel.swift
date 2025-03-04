@@ -11,7 +11,8 @@ import RealmSwift
 
 class ProductTable: Object {
     
-    @Persisted(primaryKey: true) var id: ObjectId
+//    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted(primaryKey: true) var id: String
     
     @Persisted var itemImage: String?
 
@@ -24,8 +25,9 @@ class ProductTable: Object {
     @Persisted var productlike: Bool
     
     
-    convenience init(itemImage: String?, mallName: String?, title: String?, lprice: String?, productlike: Bool) {
+    convenience init(id: String, itemImage: String?, mallName: String?, title: String?, lprice: String?, productlike: Bool) {
         self.init()
+        self.id = id
         self.itemImage = itemImage
         self.mallName = mallName
         self.title = title

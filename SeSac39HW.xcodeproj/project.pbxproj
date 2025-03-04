@@ -39,6 +39,8 @@
 		5EE769CA2D76E03C009DEB58 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769C92D76E03C009DEB58 /* RealmModel.swift */; };
 		5EE769CC2D76FE4A009DEB58 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769CB2D76FE4A009DEB58 /* LikeViewController.swift */; };
 		5EE769CE2D76FF35009DEB58 /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769CD2D76FF35009DEB58 /* LikeViewModel.swift */; };
+		5EE769D02D772033009DEB58 /* LikeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769CF2D772033009DEB58 /* LikeDetailView.swift */; };
+		5EE769D32D774D33009DEB58 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE769D22D774D33009DEB58 /* Toast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +85,7 @@
 		5EE769C92D76E03C009DEB58 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		5EE769CB2D76FE4A009DEB58 /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
 		5EE769CD2D76FF35009DEB58 /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
+		5EE769CF2D772033009DEB58 /* LikeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,7 @@
 				5E5E8A4F2D6DBEBE006BF2B6 /* Kingfisher in Frameworks */,
 				5E5E8A4C2D6DBEB5006BF2B6 /* RxSwift in Frameworks */,
 				5E5E8A4A2D6DBEB5006BF2B6 /* RxCocoa in Frameworks */,
+				5EE769D32D774D33009DEB58 /* Toast in Frameworks */,
 				5E5E8A472D6DBE9F006BF2B6 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +166,7 @@
 				5E5E8A672D6DC05B006BF2B6 /* ShoppingDetailViewModel.swift */,
 				5EE769CB2D76FE4A009DEB58 /* LikeViewController.swift */,
 				5EE769CD2D76FF35009DEB58 /* LikeViewModel.swift */,
+				5EE769CF2D772033009DEB58 /* LikeDetailView.swift */,
 			);
 			path = Shopping;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				5E5E8A4E2D6DBEBE006BF2B6 /* Kingfisher */,
 				5E5E8A512D6DBECA006BF2B6 /* Alamofire */,
 				5EE769C52D76DF74009DEB58 /* RealmSwift */,
+				5EE769D22D774D33009DEB58 /* Toast */,
 			);
 			productName = SeSac39HW;
 			productReference = 5E5E8A272D6DBCBD006BF2B6 /* SeSac39HW.app */;
@@ -242,6 +248,7 @@
 				5E5E8A4D2D6DBEBE006BF2B6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				5E5E8A502D6DBECA006BF2B6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5EE769C42D76DF74009DEB58 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5EE769D12D774D33009DEB58 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 5E5E8A282D6DBCBD006BF2B6 /* Products */;
 			projectDirPath = "";
@@ -281,6 +288,7 @@
 				5E5E8A5A2D6DBF3B006BF2B6 /* Observable.swift in Sources */,
 				5E5E8A792D6EF50C006BF2B6 /* WishListViewController.swift in Sources */,
 				5E5E8A582D6DBF1B006BF2B6 /* NetworkManager.swift in Sources */,
+				5EE769D02D772033009DEB58 /* LikeDetailView.swift in Sources */,
 				5E5E8A2D2D6DBCBD006BF2B6 /* SceneDelegate.swift in Sources */,
 				5E5E8A642D6DC01F006BF2B6 /* ShoppingDetailViewController.swift in Sources */,
 				5E5E8A5D2D6DBF57006BF2B6 /* BaseView.swift in Sources */,
@@ -564,6 +572,14 @@
 				version = 10.53.1;
 			};
 		};
+		5EE769D12D774D33009DEB58 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -596,6 +612,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5EE769C42D76DF74009DEB58 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		5EE769D22D774D33009DEB58 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5EE769D12D774D33009DEB58 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

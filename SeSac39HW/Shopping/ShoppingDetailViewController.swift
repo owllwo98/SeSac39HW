@@ -12,6 +12,7 @@ import Alamofire
 import SnapKit
 import Kingfisher
 import RealmSwift
+import Toast
 
 class ShoppingDetailViewController: UIViewController {
     
@@ -22,6 +23,8 @@ class ShoppingDetailViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     let query = BehaviorRelay<String>(value: "")
+    
+    let likeChaged = BehaviorRelay(value: ())
     
     var productList: Results<ProductTable>!
     
@@ -43,18 +46,12 @@ class ShoppingDetailViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        dump(productList)
-    }
-    
     deinit {
         print("deinit!")
     }
     
     func bindData() {
-        let input = ShoppingDetailViewModel.Input(query: query, similarButtonTapped: shoppingDetailView.standardButton.rx.tap, dateButtonTapped: shoppingDetailView.dateSortButton.rx.tap, dscButtonTapped: shoppingDetailView.highPriceSortButton.rx.tap, ascButtonTapped: shoppingDetailView.lowPriceSortButton.rx.tap, indexPaths: shoppingDetailView.collectionView.rx.prefetchItems)
+        let input = ShoppingDetailViewModel.Input(query: query, likeChaged: likeChaged, similarButtonTapped: shoppingDetailView.standardButton.rx.tap, dateButtonTapped: shoppingDetailView.dateSortButton.rx.tap, dscButtonTapped: shoppingDetailView.highPriceSortButton.rx.tap, ascButtonTapped: shoppingDetailView.lowPriceSortButton.rx.tap, indexPaths: shoppingDetailView.collectionView.rx.prefetchItems)
         
         let output = viewModel.transform(input: input)
         
@@ -65,15 +62,18 @@ class ShoppingDetailViewController: UIViewController {
                 cell.configureData(element)
                 cell.likeButton.tag = row
                 
-//                print(cell.likeButton.tag)
+                if self.productList.contains(where: {
+                    $0.id == cell.cellID
+                }) {
+                    cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                } else {
+                    cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                }
                 
-                
-
                 
                 cell.likeButton.rx.tap
-                    .do(onDispose: { print("cell dispose!") })
                     .bind(with: self) { owner, _ in
-                        
+                        owner.likeChaged.accept(())
                         if self.productList.contains(where: {
                             $0.id == cell.cellID
                         }) {
@@ -83,7 +83,7 @@ class ShoppingDetailViewController: UIViewController {
                                         $0.id == cell.cellID
                                     }
                                     owner.realm.delete(data)
-                                    
+                                    owner.view.makeToast("Product 삭제 성공!", duration: 2.0)
                                     print("realm 에 삭제 성공!")
                                 }
                             } catch {
@@ -93,10 +93,10 @@ class ShoppingDetailViewController: UIViewController {
                             do {
                                 try owner.realm.write {
               
-                                    let data = ProductTable(itemImage: element.image, mallName: element.mallName, title: element.title, lprice: element.lprice, productlike: true)
+                                    let data = ProductTable(id: element.productId, itemImage: element.image, mallName: element.mallName, title: element.title, lprice: element.lprice, productlike: true)
                                     
                                     owner.realm.add(data)
-                                    cell.id(id: data.id)
+                                    owner.view.makeToast("Product 추가 성공!", duration: 2.0)
                                     print("realm 저장완료")
                                 }
                                 
@@ -114,12 +114,6 @@ class ShoppingDetailViewController: UIViewController {
                 }
             }
             .disposed(by: disposeBag)
-        
-//        shoppingDetailView.collectionView.rx.itemSelected
-//            .bind(with: self) { owenr, value in
-//                print(value)
-//            }
-//            .disposed(by: disposeBag)
         
         output.shoppingData
             .map { "\($0.total ?? 0) 개의 검색 결과" }
