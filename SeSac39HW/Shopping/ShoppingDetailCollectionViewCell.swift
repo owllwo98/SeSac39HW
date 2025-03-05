@@ -25,10 +25,6 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
     
     var cellID: String? = nil
     
-//    let realm = try! Realm()
-    
-//    var list: Results<JackTable>!
-    
     var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -37,8 +33,6 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
         configureHierarchy()
         configureUI()
         configureLayout()
-        
-//        list = realm.objects(ProductTable.self)
         
     }
     
@@ -56,8 +50,6 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
         [itemImageView, mallName, title, lprice, likeButton].forEach {
             contentView.addSubview($0)
         }
-        
-//        itemImageView.addSubview(likeButton)
     }
     
     func configureUI() {
@@ -81,12 +73,6 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
             make.width.equalToSuperview()
             make.height.equalTo(contentView.snp.width)
         }
-        
-//        likeButton.snp.makeConstraints { make in
-//            make.bottom.equalToSuperview().inset(4)
-//            make.trailing.equalToSuperview().inset(4)
-//            make.size.equalTo(20)
-//        }
         
         mallName.snp.makeConstraints { make in
             make.top.equalTo(itemImageView.snp.bottom).inset(-4)
@@ -133,7 +119,7 @@ class ShoppingDetailCollectionViewCell: UICollectionViewCell {
         likeButton.setImage(UIImage(systemName: like ? "heart.fill" : "heart"), for: .normal)
     }
     
-    func configureData2(_ list: ProductTable?) {
+    func configureLikeViewData(_ list: ProductTable?) {
         guard let list else {
             return
         }

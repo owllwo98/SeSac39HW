@@ -41,6 +41,13 @@
 		5EE769CE2D76FF35009DEB58 /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769CD2D76FF35009DEB58 /* LikeViewModel.swift */; };
 		5EE769D02D772033009DEB58 /* LikeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769CF2D772033009DEB58 /* LikeDetailView.swift */; };
 		5EE769D32D774D33009DEB58 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE769D22D774D33009DEB58 /* Toast */; };
+		5EE769DF2D784EB5009DEB58 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769DE2D784EB5009DEB58 /* FolderViewController.swift */; };
+		5EE769E22D784EF0009DEB58 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769E12D784EF0009DEB58 /* Folder.swift */; };
+		5EE769E42D784F38009DEB58 /* FolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769E32D784F38009DEB58 /* FolderRepository.swift */; };
+		5EE769E62D785270009DEB58 /* ProductTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769E52D785270009DEB58 /* ProductTableRepository.swift */; };
+		5EE769E82D7858C6009DEB58 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769E72D7858C6009DEB58 /* ListTableViewCell.swift */; };
+		5EE769EA2D7877C0009DEB58 /* TravelTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769E92D7877C0009DEB58 /* TravelTable.swift */; };
+		5EE769EC2D78785D009DEB58 /* TravelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE769EB2D78785D009DEB58 /* TravelRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -86,6 +93,13 @@
 		5EE769CB2D76FE4A009DEB58 /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
 		5EE769CD2D76FF35009DEB58 /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
 		5EE769CF2D772033009DEB58 /* LikeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDetailView.swift; sourceTree = "<group>"; };
+		5EE769DE2D784EB5009DEB58 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
+		5EE769E12D784EF0009DEB58 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		5EE769E32D784F38009DEB58 /* FolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRepository.swift; sourceTree = "<group>"; };
+		5EE769E52D785270009DEB58 /* ProductTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableRepository.swift; sourceTree = "<group>"; };
+		5EE769E72D7858C6009DEB58 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		5EE769E92D7877C0009DEB58 /* TravelTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTable.swift; sourceTree = "<group>"; };
+		5EE769EB2D78785D009DEB58 /* TravelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +140,7 @@
 		5E5E8A292D6DBCBD006BF2B6 /* SeSac39HW */ = {
 			isa = PBXGroup;
 			children = (
+				5EE769E02D784EE5009DEB58 /* Folder */,
 				5E5E8A772D6EF4F3006BF2B6 /* WishList */,
 				5E5E8A692D6DE39A006BF2B6 /* Error */,
 				5E5E8A5E2D6DBF64006BF2B6 /* Shopping */,
@@ -142,7 +157,6 @@
 				5E5E8A552D6DBF08006BF2B6 /* Extension.swift */,
 				5E5E8A572D6DBF1B006BF2B6 /* NetworkManager.swift */,
 				5E5E8A592D6DBF3B006BF2B6 /* Observable.swift */,
-				5EE769C92D76E03C009DEB58 /* RealmModel.swift */,
 			);
 			path = SeSac39HW;
 			sourceTree = "<group>";
@@ -184,8 +198,23 @@
 			isa = PBXGroup;
 			children = (
 				5E5E8A782D6EF50C006BF2B6 /* WishListViewController.swift */,
+				5EE769DE2D784EB5009DEB58 /* FolderViewController.swift */,
+				5EE769E72D7858C6009DEB58 /* ListTableViewCell.swift */,
 			);
 			path = WishList;
+			sourceTree = "<group>";
+		};
+		5EE769E02D784EE5009DEB58 /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+				5EE769E12D784EF0009DEB58 /* Folder.swift */,
+				5EE769E32D784F38009DEB58 /* FolderRepository.swift */,
+				5EE769C92D76E03C009DEB58 /* RealmModel.swift */,
+				5EE769E52D785270009DEB58 /* ProductTableRepository.swift */,
+				5EE769E92D7877C0009DEB58 /* TravelTable.swift */,
+				5EE769EB2D78785D009DEB58 /* TravelRepository.swift */,
+			);
+			path = Folder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,22 +311,29 @@
 				5E5E8A622D6DBFF1006BF2B6 /* ShoppingTitleViewModel.swift in Sources */,
 				5EE769CA2D76E03C009DEB58 /* RealmModel.swift in Sources */,
 				5E5E8A542D6DBEEE006BF2B6 /* Shopping.swift in Sources */,
+				5EE769E62D785270009DEB58 /* ProductTableRepository.swift in Sources */,
 				5E5E8A6F2D6E1B9F006BF2B6 /* APIError.swift in Sources */,
 				5E5E8A562D6DBF08006BF2B6 /* Extension.swift in Sources */,
 				5E5E8A2B2D6DBCBD006BF2B6 /* AppDelegate.swift in Sources */,
 				5E5E8A5A2D6DBF3B006BF2B6 /* Observable.swift in Sources */,
 				5E5E8A792D6EF50C006BF2B6 /* WishListViewController.swift in Sources */,
 				5E5E8A582D6DBF1B006BF2B6 /* NetworkManager.swift in Sources */,
+				5EE769E42D784F38009DEB58 /* FolderRepository.swift in Sources */,
 				5EE769D02D772033009DEB58 /* LikeDetailView.swift in Sources */,
+				5EE769E22D784EF0009DEB58 /* Folder.swift in Sources */,
 				5E5E8A2D2D6DBCBD006BF2B6 /* SceneDelegate.swift in Sources */,
 				5E5E8A642D6DC01F006BF2B6 /* ShoppingDetailViewController.swift in Sources */,
 				5E5E8A5D2D6DBF57006BF2B6 /* BaseView.swift in Sources */,
 				5E5E8A602D6DBF8D006BF2B6 /* ShoppingDetailView.swift in Sources */,
+				5EE769EA2D7877C0009DEB58 /* TravelTable.swift in Sources */,
 				5EE769CE2D76FF35009DEB58 /* LikeViewModel.swift in Sources */,
 				5E5E8A712D6E1BE6006BF2B6 /* APIErrorResponse.swift in Sources */,
 				5E5E8A662D6DC044006BF2B6 /* ShoppingDetailCollectionViewCell.swift in Sources */,
 				5E5E8A682D6DC05B006BF2B6 /* ShoppingDetailViewModel.swift in Sources */,
+				5EE769EC2D78785D009DEB58 /* TravelRepository.swift in Sources */,
 				5E5E8A3F2D6DBDFD006BF2B6 /* ShoppingTitleViewController.swift in Sources */,
+				5EE769E82D7858C6009DEB58 /* ListTableViewCell.swift in Sources */,
+				5EE769DF2D784EB5009DEB58 /* FolderViewController.swift in Sources */,
 				5E5E8A442D6DBE57006BF2B6 /* APIKey.swift in Sources */,
 				5EE769CC2D76FE4A009DEB58 /* LikeViewController.swift in Sources */,
 			);

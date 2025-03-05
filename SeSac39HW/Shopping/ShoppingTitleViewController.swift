@@ -27,7 +27,7 @@ class ShoppingTitleViewController: UIViewController {
     var productList: Results<ProductTable>!
     
     let realm = try! Realm()
-    
+    let folderRepository: FolderRepository = FolderTableRepository()
     let disposebag = DisposeBag()
     
     override func viewDidLoad() {
@@ -42,9 +42,11 @@ class ShoppingTitleViewController: UIViewController {
         productList = realm.objects(ProductTable.self)
         
         print(realm.configuration.fileURL)
-//        print(productList.count)
-//        print(productList[0].productlike)
-//        dump(productList)
+//        folderRepository.createItem(name: "프랑스")
+//        folderRepository.createItem(name: "영국")
+//        folderRepository.createItem(name: "이탈리아")
+//        folderRepository.createItem(name: "크로아티아")
+
     }
     
     
@@ -73,7 +75,8 @@ class ShoppingTitleViewController: UIViewController {
     
         navigationItem.rightBarButtonItem?.rx.tap
             .bind(with: self, onNext: { owner, _ in
-                let vc = WishListViewController()
+//                let vc = WishListViewController()
+                let vc = FolderViewController()
                 
                 owner.navigationController?.pushViewController(vc, animated: true)
             })

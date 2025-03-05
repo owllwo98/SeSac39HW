@@ -38,13 +38,14 @@ class LikeViewController: UIViewController {
         
         bind()
         
+        navigationItem.title = "좋아요 리스트"
     }
     
     func bind() {
         collectionViewList
             .bind(to: likeDetailView.collectionView.rx.items(cellIdentifier: ShoppingDetailCollectionViewCell.id, cellType: ShoppingDetailCollectionViewCell.self)) {  (row, element, cell) in
                 
-                cell.configureData2(element)
+                cell.configureLikeViewData(element)
                 cell.configureHeart(element.productlike)
                 
                 cell.likeButton.rx.tap
